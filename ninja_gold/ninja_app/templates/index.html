@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<body>
+    <div class = "container">
+        <h1>Ninja Gold</h1>
+        <h2>Your Gold: <input type="text" disabled value="{{request.session.gold}}"></h2>
+        <a href="/reset"><button>Reset</button></a>
+        <div id="places">
+            <div>
+                <h2>Farm</h2>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJw0uBmcM8Z-qeL-KYTbBJezeSANKfYBegecXbxLZgJMBckuDeR3kJ9w2mBhU&usqp=CAc" alt="farm">
+                <p>(earns 10-20 golds)</p>
+                <form action="/gold" method="post">
+                    {% csrf_token %}
+                    <input name="place" type="hidden" value="farm"></p>
+                    <button type="submit">Find Gold!</button>
+                </form>
+            </div>
+            <div>
+                <h2>Cave</h2>
+                <img src="https://image.freepik.com/free-vector/cartoon-cave-isolated-white-background_29190-1393.jpg" alt="cave">
+                <p>(earns 5-10 golds)</p>
+                <form action="/gold" method="post">
+                    {% csrf_token %}
+                    <input name="place" type="hidden" value="farm"></p>
+                    <button type="submit">Find Gold!</button>
+                </form>
+            </div>
+            <div>
+                <h2>House</h2>
+                <img src="https://lh3.googleusercontent.com/proxy/f2FnJpLBiuch4mISBkS313Gp03jrFyIRbV-m4PrOdHP9qjUoiHhn_HHybIqNmBLN46SiIiyF3srFbtKPOlEvXghtoOEHsmA" alt="house">
+                <p>(earns 2-5 golds)</p>
+                <form action="/gold" method="post">
+                    {% csrf_token %}
+                    <input name="place" type="hidden" value="house"></p>
+                    <button type="submit">Find Gold!</button>
+                </form>
+            </div>
+            <div>
+                <h2>Casino</h2>
+                <img src="https://lh3.googleusercontent.com/proxy/fHEfkOIjcchd9VC906T1j3p6z_G89T819HJW7VsJn4KmYFpM9afzPMK6Byb6eYTbRdNA_eEtCONwgzaq-2wO5Isj4DWzOE0" alt="casino">
+                <p>(earns/takes 0-50 golds)</p>
+                <form action="/gold" method="post">
+                    {% csrf_token %}
+                    <input name="place" type="hidden" value="casino"></p>
+                    <button type="submit">Find Gold!</button>
+                </form>
+            </div>
+        </div>
+        <h2>Activities:</h2>
+        <div id="activities">
+            {% for activity in request.session.activities reversed %}
+                <p class="{{activity.result}}">{{activity.message}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

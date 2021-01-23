@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    /*outline: 1px solid red; */
+}
+.container {
+    margin: 50px;
+
+}
+img {
+    width: 60px;
+    height: 60px;
+}
+h1 {
+    margin-bottom: 20px;
+}
+#places {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+
+}
